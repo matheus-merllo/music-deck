@@ -41,25 +41,29 @@ const descriptions = [descAHa, descKansas, descPinkFloyd, descBeatles, descIronM
 //contador para as condicionais de play e stop
 var count = 0;
 
-//Função de play e pause
-function playPause(audio){
-    let element = document.querySelector(audio);
-    if (element != null && element.localName === 'audio'){
-        element.play();
-        count = 1;
-    } else {    
-        alert('ERRO: Elemento não encontrado')
-    }
-}
-
 //função que para o audio
-function stopAudio(audio){
-    let element = document.querySelector(audio);    
-    element.pause();
-    element.currentTime = 0;  
-    count = 0;  
+function resetAudio(){
+	let trackList = ["audio_a-ha", "audio_kansas", "audio_pink-floyd", "audio_beatles", "audio_iron-maiden", "audio_supertramp", "audio_black-sabbath", "audio_eagles", "audio_ac-dc", "audio_guns", "audio_pearl-jam", "audio_metallica", "audio_the-cranberries", "audio_led-zeppelin", "audio_dire-straits", "audio_doors"]
+    for(i = 0; i < trackList.length; i++) {
+		let element = document.getElementById(trackList[i]);
+		element.pause();
+		element.currentTime = 0;
+	}  
 }
 
+//Função de play
+function play(audio){
+    let element = document.querySelector(audio);
+        element.play(); 
+}
+
+//Função de pause
+function pauseAudio(audio){
+    let element = document.querySelector(audio);
+    element.pause();
+    idTarget = '0';
+}
+    
 //Função de troca dos cards
 function cardChanger(title, description){
     cardTitle.innerHTML = title;
@@ -75,14 +79,18 @@ for (let counter=0; counter<buttons.length; counter++){
     let description = descriptions[counter];
 
     //Evento de click
-    button.addEventListener('click', () => {
-        if (count == 0){
-            playPause(audio);
-            cardChanger(title, description);   
+    var idTarget = '0';
+	button.onclick = (event) => {
+        var evento = event.target.classList[1];
+        if (evento != idTarget){
+            resetAudio();
+            play(audio);
+            cardChanger(title, description);
+            idTarget = evento;
         } else {
-            stopAudio(audio); 
-        }   
-    })
+            pauseAudio(audio);
+        } 
+    }
 
     //Eventos de teclado
     button.addEventListener('keydown', (event) => {
