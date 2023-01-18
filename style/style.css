@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(45deg, rgba(25, 38, 69, 0.692), rgba(23, 69, 64, 0.782));
+    background: url(../img/rock.jpg) no-repeat;
+    background-position: right;
+    background-size: cover;
+}
+
+.container{
+    width: 680px;
+    height: 680px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: 5px;
+    margin-left: 290px;
+    background: transparent;
+    box-shadow: 5px 5px 15px;
+}
+
+.button{
+    width: 160px;
+    height: 160px;
+    margin: 5px;
+    border: 0;
+    border-radius: 5%;
+    transition: 0.5s;
+    cursor: pointer;
+    filter: blur(3px);
+}
+
+.button:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+    filter: none;
+}
+
+.button:focus{
+    transform: scale(1.1);
+    filter: none;
+}   
+
+.active, .button:active{
+    transform: none;
+    transition: 0s;
+}
+
+.a-ha{
+    background: url(../img/a-ha.jpg) center; 
+    background-size: cover;
+}
+
+.kansas{
+    background: url(../img/kansas.jpg) center; 
+    background-size: cover;
+}
+
+.pink-floyd{
+    background: url(../img/pink-floyd.jpg) center; 
+    background-size: cover;
+}
+
+.beatles{
+    background: url(../img/beatles.jpg) center; 
+    background-size: cover;
+}
+
+.iron-maiden{
+    background: url(../img/iron-maiden.jpg) center; 
+    background-size: cover;
+}
+
+.supertramp{
+    background: url(../img/supertramp.jpg) center; 
+    background-size: cover;
+}
+
+.black-sabbath{
+    background: url(../img/black-sabbath.jpg) center; 
+    background-size: cover;
+}
+
+.eagles{
+    background: url(../img/eagles.jpg) center; 
+    background-size: cover;
+}
+
+.ac-dc{
+    background: url(../img/ac-dc.jpg) center; 
+    background-size: cover;
+}
+
+.guns{
+    background: url(../img/guns.jpg) center; 
+    background-size: cover;
+}
+
+.pearl-jam{
+    background: url(../img/pearl-jam.jpg) center; 
+    background-size: cover;
+}
+
+.metallica{
+    background: url(../img/metallica.jpg) center; 
+    background-size: cover;
+}
+
+.doors{
+    background: url(../img/doors.jpg) center; 
+    background-size: cover;
+}
+
+.led-zeppelin{
+    background: url(../img/led-zeppelin.jpg) center; 
+    background-size: cover;
+}
+
+.dire-straits{
+    background: url(../img/dire-straits.jpg) center; 
+    background-size: cover;
+}
+
+.the-cranberries{
+    background: url(../img/the-cranberries.jpg) center; 
+    background-size: cover;
+}
+
+.card{
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 35px;
+    justify-self: right;
+    color: #f5f5f5e6;
+    background: #000000db;
+    box-shadow: 5px 5px 15px black;
+    vertical-align: text-top;
+    transition:all 2s;
+}
+
+.card-title{
+    font-family: 'Amatic SC', sans-serif;
+    text-align: center;
+    padding: 10px;
+}
+
+.card-desc{
+    text-align: center;
+    margin: 12px;
+    font-size: 20px;
+}
