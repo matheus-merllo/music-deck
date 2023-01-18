@@ -38,17 +38,60 @@ const descDoors = document.querySelector('.desc_doors').textContent;
 const titles = [titleAHa, titleKansas, titlePinkFloyd, titleBeatles, titleIronMaiden, titleSupertramp, titleBlackSabbath, titleEagles, titleAcDc, titleGuns, titlePearlJam, titleMetallica, titleTheCramberries, titleLedZeppelin, titleDireStraits, titleDoors];           
 const descriptions = [descAHa, descKansas, descPinkFloyd, descBeatles, descIronMaiden, descSupertramp, descBlackSabbath, descEagles, descAcDc, descGuns, descPearlJam, descMetallica, descTheCramberries, descLedZeppelin, descDireStraits, descDoors];
 
+//contador para as condicionais de play e stop
+var count = 0;
+
+//Função de play e pause
+function playPause(audio){
+    let element = document.querySelector(audio);
+    if (element != null && element.localName === 'audio'){
+        element.play();
+        count = 1;
+    } else {    
+        alert('ERRO: Elemento não encontrado')
+    }
+}
+
+//função que para o audio
+function stopAudio(audio){
+    let element = document.querySelector(audio);    
+    element.pause();
+    element.currentTime = 0;  
+    count = 0;  
+}
+
+//Função de troca dos cards
 function cardChanger(title, description){
     cardTitle.innerHTML = title;
     cardDesc.innerHTML = description;
 }
 
+//Iteração para "unir" botões e seus respectivos conteúdos
 for (let counter=0; counter<buttons.length; counter++){
     let button = buttons[counter];
+    let key = button.classList[1];
+    let audio = `#audio_${key}`;
     let title = titles[counter];
     let description = descriptions[counter];
 
+    //Evento de click
     button.addEventListener('click', () => {
+        if (count == 0){
+            playPause(audio);
             cardChanger(title, description);   
+        } else {
+            stopAudio(audio); 
+        }   
+    })
+
+    //Eventos de teclado
+    button.addEventListener('keydown', (event) => {
+        if(event.code === 'Enter' || event.code === 'Space'){
+            button.classList.add('active');
+        }
+    })  
+
+    button.addEventListener('keyup', () => {
+        button.classList.remove('active')
     })
 }
