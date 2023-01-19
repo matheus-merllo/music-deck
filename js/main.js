@@ -42,13 +42,25 @@ const descriptions = [descAHa, descKansas, descPinkFloyd, descBeatles, descIronM
 var count = 0;
 
 //função que para o audio
-function resetAudio(){
+function resetAudio(model){
 	let trackList = ["audio_a-ha", "audio_kansas", "audio_pink-floyd", "audio_beatles", "audio_iron-maiden", "audio_supertramp", "audio_black-sabbath", "audio_eagles", "audio_ac-dc", "audio_guns", "audio_pearl-jam", "audio_metallica", "audio_the-cranberries", "audio_led-zeppelin", "audio_dire-straits", "audio_doors"]
-    for(i = 0; i < trackList.length; i++) {
-		let element = document.getElementById(trackList[i]);
-		element.pause();
-		element.currentTime = 0;
-	}  
+    if(model == 1){
+		for(i = 0; i < trackList.length; i++) {
+			let element = document.getElementById(trackList[i]);
+			if(idTarget === trackList[i]){ 
+				element.pause();
+				element.currentTime = 0;
+			}else{
+				element.pause();
+			}
+		}
+	}else if(model == 2){
+		for(i = 0; i < trackList.length; i++) {
+			let element = document.getElementById(trackList[i]);
+			element.pause();
+			element.currentTime = 0;
+		}
+	}
 }
 
 //Função de play
@@ -60,7 +72,11 @@ function play(audio){
 //Função de pause
 function pauseAudio(audio){
     let element = document.querySelector(audio);
-    element.pause();
+	if(element.currentTime > 0) {
+		element.pause();
+	}else{
+		element.play();
+	}
     idTarget = '0';
 }
     
@@ -83,7 +99,7 @@ for (let counter=0; counter<buttons.length; counter++){
 	button.onclick = (event) => {
         var evento = event.target.classList[1];
         if (evento != idTarget){
-            resetAudio();
+            resetAudio(1);
             play(audio);
             cardChanger(title, description);
             idTarget = evento;
@@ -91,6 +107,12 @@ for (let counter=0; counter<buttons.length; counter++){
             pauseAudio(audio);
         } 
     }
+	
+	//Evento de duplo-click
+	button.addEventListener('dblclick', () => {
+        resetAudio(2);
+		idTarget = '0';
+    })  
 
     //Eventos de teclado
     button.addEventListener('keydown', (event) => {
